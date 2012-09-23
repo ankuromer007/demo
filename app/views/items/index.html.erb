@@ -1,0 +1,38 @@
+<br>
+<% if !@items.nil? %>
+
+  <h2><u>Listing items posted by you</u></h2>
+  <br>
+
+  <table>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Base Price</th>
+      <th>Deadline</th>
+      <th></th>
+      <th></th>
+    </tr>
+
+  <% @items.each do |item| %>
+    <tr>
+      <td><%= image_tag item.image.url(:thumb) %></td>
+      <td><%= link_to item.name, item %></td>
+      <td><%= item.description %></td>
+      <td>Rs. <%= item.base_price %></td>
+      <% if item.deadline >= Time.now + 5.hours + 30.minutes %>
+        <td><%= distance_of_time_in_words_to_now(item.deadline - 5.hours - 30.minutes, true) %></td>
+        <td><%= link_to 'Edit', edit_item_path(item) %></td>
+      <% else %>
+        <td>Sold</td>
+      <% end %>
+      <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }, remote: true, :class => 'delete_item' %></td>
+    </tr>
+  <% end %>
+  </table>
+<% else %>
+  <br>
+  <h3>You have not posted any item yet.</h3>
+  <br><br>
+<% end %>

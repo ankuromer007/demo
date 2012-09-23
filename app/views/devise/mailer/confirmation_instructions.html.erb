@@ -1,0 +1,9 @@
+<p>Welcome, <b><%= @resource.name %> !</b></p>
+
+<p>Your username is: <%= @resource.email %></p>
+
+<p>Please confirm your account and then change your password.</p>
+
+<p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+
+<p>And your temporary password is: <%= @resource.password %></p>

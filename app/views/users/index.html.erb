@@ -1,0 +1,26 @@
+<br>
+<h2><u>Listing users</u></h2>
+<br>
+
+<table>
+  <tr>
+  	<th></th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Registered on</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+  	<td><%= image_tag user.avatar.url(:thumb) %></td>
+    <td><%= link_to user.name, user %></td>
+    <td><%= user.email %></td>
+    <td><%= user.created_at.to_date %></td>
+    <% if user.email == current_user.email %>
+      <td><%= link_to 'Edit', edit_user_registration_path(user) %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>

@@ -1,0 +1,36 @@
+<p>
+  <b>Name:</b>
+  <%= @item.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @item.description %>
+</p>
+
+<p>
+  <b>Image:</b><br>
+  <%= image_tag @item.image.url(:small) %>
+</p>
+
+<p>
+  <b>Base Price:</b>
+  <%= @item.base_price %>
+</p>
+
+<p>
+  <b>Deadline:</b>
+  <%= distance_of_time_in_words_to_now(@item.deadline - 5.hours - 30.minutes, true) %>
+</p>
+
+<p>
+  <b>Bid Price:</b>
+  <%= text_field :name, :required => true, :autofocus => true %></div>
+</p>
+
+<h1>Updating item</h1>
+
+<%= render 'form' %>
+<br>
+<%= link_to 'Show', item_path %> |
+<%= link_to 'Back', items_path %>

@@ -12,4 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require kendo/kendo.web.min
 //= require_tree .
+
+
+$(function() {
+	$('.delete_item').bind('ajax:success', function() {
+		$(this).closest('tr').fadeOut();
+	});
+
+	$("#datetimepicker").kendoDateTimePicker({ interval: 60, format: "yyyy/MM/dd hh:mm tt" });
+});

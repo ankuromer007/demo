@@ -1,4 +1,23 @@
 Demo::Application.routes.draw do
+
+  authenticated :user do
+    root :to => 'dashboard#index'
+  end
+
+  root :to => "home#index"
+
+  devise_for :users, :controllers => { :registrations => :registrations }
+
+  resources :users, only: [:show, :index]
+
+  match '/users/:id/avatars' => 'users#avatars', :as => 'avatars_user'
+
+  resources :items
+
+  match '/items/:id/images' => 'items#images', :as => 'images_item'
+
+  resources :dashboard
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

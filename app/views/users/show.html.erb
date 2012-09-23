@@ -1,0 +1,18 @@
+<p>
+	<b>Name:</b>
+	<%= @user.name %>
+</p>
+
+<p>
+	<b>Email:</b>
+	<%= @user.email if @user.email %>
+</p>
+
+<p>
+  <b>Avatar:</b><br>
+  <%= image_tag @user.avatar.url(:small) %>
+</p>
+
+<br>
+
+<%= link_to 'Back', users_path %>
