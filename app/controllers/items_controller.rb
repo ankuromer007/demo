@@ -3,8 +3,7 @@ class ItemsController < ApplicationController
 	before_filter :authenticate_user!
 
 	def index
-    @items = Item.where("user_id = ?", current_user.id )
-    @items.sort! { |a,b| a.deadline <=> b.deadline }
+    @items = Item.where("user_id = ?", current_user.id).page(params[:page]).order('deadline')
 
     respond_to do |format|
       format.html # index.html.erb

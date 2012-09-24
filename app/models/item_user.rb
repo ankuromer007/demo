@@ -8,4 +8,5 @@ class ItemUser < ActiveRecord::Base
 	belongs_to :item
   belongs_to :user
 
+  self.per_page = 12
 end

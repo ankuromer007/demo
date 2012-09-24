@@ -1,0 +1,44 @@
+<br>
+<% if @items.size > 0 %>
+
+  <h2><u>Items placed for bid</u></h2>
+  <br>
+
+  <table>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Base Price</th>
+      <th>Deadline</th>
+      <th></th>
+    </tr>
+
+  <% @items.each do |item| %>
+    <tr>
+      <td><%= image_tag item.image.url(:thumb) %></td>
+      <td><%= link_to item.name, item %></td>
+      <td>Rs. <%= item.base_price %></td>
+      <td><%= distance_of_time_in_words_to_now(item.deadline - 5.hours - 30.minutes, true) %></td>
+      <% flag = 0 %>
+      <% @item_users.each do |item_user| %>
+        <% if item_user.item_id == item.id %>
+          <% flag = 1
+            break %>
+        <% end %>
+      <% end %>
+      <% if flag == 1 %>
+          <td>Already Bidded</td>
+      <% else %>
+          <td><%= link_to 'Place Bid', place_new_bid_path(item) %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </table>
+
+  <br><br><br>
+  <%= will_paginate @items, :class => 'digg_pagination' %>
+<% else %>
+  <br>
+  <h3>There is no item available for bidding.</h3>
+  <br><br>
+<% end %>

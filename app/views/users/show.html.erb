@@ -1,18 +1,18 @@
-<p>
-	<b>Name:</b>
-	<%= @user.name %>
-</p>
+<%= link_to ( image_tag 'backbutton.jpg' ), users_path, :class => 'back' %>
+<div class="show">
+	<p>
+		<b>Name:</b>
+		<%= @user.name %>
+	</p>
 
-<p>
-	<b>Email:</b>
-	<%= @user.email if @user.email %>
-</p>
+	<p>
+		<b>Email:</b>
+		<%= @user.email if @user.email %>
+	</p>
 
-<p>
-  <b>Avatar:</b><br>
-  <%= image_tag @user.avatar.url(:small) %>
-</p>
-
+	<p>
+	  <b>Avatar:</b><br>
+	  <%= image_tag @user.avatar.url(:small) %>
+	</p>
+</div>
 <br>
-
-<%= link_to 'Back', users_path %>

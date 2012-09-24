@@ -16,5 +16,5 @@ class Item < ActiveRecord::Base
                     :styles => { :thumb => "75x75>", :small => "150x150>" },
                     :url => '/:class/:id/:attachment?style=:style'
 
-  self.per_page = 10
+  self.per_page = 12
 end

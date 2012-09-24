@@ -60,17 +60,25 @@ class BidsController < ApplicationController
   end
 
   def update
-    bid_form = BidForm.new(params[:bid_form])
-    @item_user = ItemUser.find(bid_form.item_user_id)
-    @item_user.bid_price = bid_form.bid_price
+    @bid_form = BidForm.new(params[:bid_form])
+    @item = Item.find(@bid_form.item_id)
 
     respond_to do |format|
-      if @item_user.update_attributes(params[:item])
-        format.html { redirect_to :action => 'index', notice: 'Bid was successfully updated.' }
-        format.json { head :no_content }
+      if @bid_form.valid?
+
+        @item_user = ItemUser.find(@bid_form.item_user_id)
+        @item_user.bid_price = @bid_form.bid_price
+
+        if @item_user.update_attributes(params[:item])
+          format.html { redirect_to :action => 'index', notice: 'Bid was successfully updated.' }
+          format.json { head :no_content }
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @item_user.errors, status: :unprocessable_entity }
+        end
       else
-        format.html { render action: "edit" }
-        format.json { render json: @item_user.errors, status: :unprocessable_entity }
+        format.html { render action: 'edit' }
+        format.json { render json: { item: @item, bid_form: @bid_form.errors }, status: :unprocessable_entity }
       end
     end
   end

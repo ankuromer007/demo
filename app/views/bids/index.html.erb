@@ -1,7 +1,7 @@
 <br>
 <% if @item_users.size > 0 %>
 
-  <h2><u>Biding done by you</u></h2>
+  <h2>Biding done by you</h2>
   <br>
 
   <table>
@@ -11,8 +11,8 @@
       <th>Base Price</th>
       <th>Bid Price</th>
       <th>Deadline</th>
-      <th></th>
-      <th></th>
+      <th>Edit</th>
+      <th>Delete</th>
     </tr>
 
   <% @item_users.each do |item_user| %>
@@ -27,11 +27,14 @@
       <% else %>
         <td>Sold</td>
       <% end %>
-      <td><%= link_to 'Edit', edit_bid_path(item_user) %></td>
-      <td><%= link_to 'Destroy', bid_path(item_user), method: :delete, data: { confirm: 'Are you sure?' }, remote: true, :class => 'delete_item_user' %></td>
+      <td style="text-align: center;"><%= link_to (image_tag 'edit.png'), edit_bid_path(item_user) %></td>
+      <td style="text-align: center;"><%= link_to (image_tag 'delete.png'), bid_path(item_user), method: :delete, data: { confirm: 'Are you sure?' }, remote: true, :class => 'delete_item_user' %></td>
     </tr>
   <% end %>
   </table>
+
+  <br><br><br>
+  <%= will_paginate @item_users, :class => 'apple_pagination' %>
 <% else %>
   <br>
   <h3>You have not bid on any item yet.</h3>

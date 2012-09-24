@@ -14,13 +14,79 @@
  *= require_tree .
  */
 
+body{
+  background:  url('/images/bg-grad.png') repeat-x;
+}
+
  #wrapper{
   margin: 0px auto;
   width: 960px;
-  border: solid 1px #ccc;
+  /*border: solid 1px #ccc; */
   overflow: hidden;
 }
+#header{
+  float: right;
+}
 
+.btn, nav ul li ul li a{
+  color: #000;
+  text-decoration: none;
+  font-family: sans-serif, arial, verdana;
+  font-size: 12px;
+  padding: 10px 12px;
+  display: inline;
+}
+.btn1{
+  color: #409bea;
+  text-decoration: none;
+  font-family: sans-serif, arial, verdana;
+  font-size: 12px;
+  padding: 10px 12px;
+  display: inline;
+}
+nav{
+  color:#666666;
+  height: 35px;
+  line-height: 35px;
+  text-transform: uppercase;
+}
+ul, ul li{
+  padding: 0;
+  margin: 0;
+}
+nav ul li{
+  float: left;
+  padding: 0 0;
+  list-style: none;
+}
+nav ul li a{
+  display: block;
+}
+nav ul li a:hover, .active{
+  background: #2f2f2f;
+  color: #FFF;
+}
+nav ul .submenu{
+  display: none;
+}
+nav ul li:hover ul{
+  display: block;
+  position: absolute;
+  background: #eaeaea;
+  box-shadow: 0px 2px 5px #333;
+  z-index: 5;
+  padding: 0 8px 0 14px;
+  margin: 0 0 0 1px;
+}
+nav ul li ul li{
+  float: none;
+  display: block;   
+}
+
+#content{
+  clear: both;
+  background:#fff;
+}
 .sign_in{
   float: left;
   border: solid 1px #ccc;
@@ -35,18 +101,13 @@
   padding: 20px;
   margin: 44px 15px 10px 0px ;
 }
-#header{
-  border: solid 1px #ccc;
+#footer{
+  width: 100%;
+  margin-top: 20px;
 }
-#content{
-  border: solid 1px;
-  clear: both;
-}
-#footer{border-top: solid 1px #ccc;width: 100%;margin-top: 20px;}
 #footer_cnt{
   margin: 0px auto;
   width: 960px;
-  border: solid 1px #ccc;
   text-align: center;
   font-size: 11px;
 }
@@ -69,13 +130,11 @@
 #notice {
   color: green;
 }
-
 .field_with_errors {
   padding: 2px;
   background-color: red;
   display: table;
 }
-
 #error_explanation {
   width: 450px;
   border: 2px solid red;
@@ -96,61 +155,73 @@
 }
 
 
-nav{
-  background: #eaeaea;
-  height: 35px;
-  line-height: 35px;
-  text-transform: uppercase;
-  float: right;
+table {
+  border: 1px solid #e3e3e3;
+  background-color: #fafafa;
+  width: 100%;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
 }
-nav ul.submenu{
-  display: none;
+table td, table th {
+  padding: 5px;
+  color: #333;
 }
-nav ul li:hover ul.submenu{
-  display: block;
-  position: absolute;
-  background: #eaeaea;
-  box-shadow: 0px 2px 5px #333;
-  z-index: 5;
-  padding: 0 8px 0 14px;
-  margin: 0 0 0 1px;
+table thead {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  padding: .2em 0 .2em .5em;
+  text-align: left;
+  color: #4B4B4B;
+  background-color: #C8C8C8;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#e3e3e3), color-stop(.6,#B3B3B3));
+  background-image: -moz-linear-gradient(top, #D6D6D6, #B0B0B0, #B3B3B3 90%);
+  border-bottom: solid 1px #999;
 }
-nav ul.submenu1{
-  display: none;
+table th {
+  background: -moz-linear-gradient(top, #F0F0F0 0, #DBDBDB 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F0F0F0), color-stop(100%, #DBDBDB));
+  color: #444;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 20px;
+  font-style: normal;
+  font-weight: normal;
+  text-align: left;
+  text-shadow: white 1px 1px 1px;
 }
-nav ul li:hover ul.submenu1{
-  display: block;
-  position: relative;
-  background: #eaeaea;
-  box-shadow: 0px 2px 5px #333;
-  z-index: 5;
-  padding: 0 8px 0 14px;
-  margin: 0 0 0 1px;
+table td {
+  line-height: 20px;
+  color: #0084B4;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  border-bottom: 1px solid #fff;
+  border-top: 1px solid #fff;
 }
-nav ul li ul li{
-  float: none;
+table td a{
+  text-decoration: none;
+}
+table td:hover {
+  background-color: #fff;
 }
 
-ul.nav {
-  list-style: none;
-  margin: 0 0 2em;
-  padding: 0;
+
+.list{
+  padding: 0 80px;
 }
-ul.nav li {
-  display: inline;
+.list1{
+  padding: 0 80px;
+  opacity: 0.3;
 }
-ul.nav li a{
-  color: #000;
-  text-decoration: none;
-  font-family: sans-serif, arial, verdana;
-  font-size: 12px;
-  padding: 10px 12px;
-  display: inline;
+.back{
+  padding: 0 5px;
 }
-ul.nav li a:hover, .active{
-  background: #000;
-  color: #FFF;
+h2, h4{
+  padding-left: 10px;
+  color: #2f2f2f;
 }
-ul.nav li ul li{
-  display: block; 
+.new_item,.new_bid_form,.show,.edit_item,.preview,.new_user,.edit_user{
+  padding-left: 10px;
+}
+#dashboard{
+  background-color: #fff;
 }
