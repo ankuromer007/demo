@@ -105,6 +105,10 @@ GEM
       activesupport (= 3.2.8)
       bundler (~> 1.0)
       railties (= 3.2.8)
+    rails3-active_form (2.0.0)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      bundler (>= 1.0)
     railties (3.2.8)
       actionpack (= 3.2.8)
       activesupport (= 3.2.8)
@@ -171,6 +175,7 @@ DEPENDENCIES
   mysql2
   paperclip!
   rails (= 3.2.8)
+  rails3-active_form
   rspec-rails
   sass-rails (~> 3.2.3)
   therubyracer

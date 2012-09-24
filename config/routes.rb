@@ -16,7 +16,13 @@ Demo::Application.routes.draw do
 
   match '/items/:id/images' => 'items#images', :as => 'images_item'
 
-  resources :dashboard
+  match 'index' => 'dashboard#index'
+
+  resources :bids, except: [:new]
+
+  match '/bids/:id/place_new' => 'bids#place_new', :as => 'place_new_bid'
+
+  match '/bids/update' => 'bids#update', :as => 'update_bid'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

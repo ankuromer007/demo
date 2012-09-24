@@ -1,38 +1,39 @@
 <br>
-<% if @items.size > 0 %>
+<% if @item_users.size > 0 %>
 
-  <h2><u>Items posted by you</u></h2>
+  <h2><u>Biding done by you</u></h2>
   <br>
 
   <table>
     <tr>
       <th></th>
       <th>Name</th>
-      <th>Description</th>
       <th>Base Price</th>
+      <th>Bid Price</th>
       <th>Deadline</th>
       <th></th>
       <th></th>
     </tr>
 
-  <% @items.each do |item| %>
+  <% @item_users.each do |item_user| %>
+    <% item = Item.find(item_user.item_id) %>
     <tr>
       <td><%= image_tag item.image.url(:thumb) %></td>
       <td><%= link_to item.name, item %></td>
-      <td><%= item.description %></td>
       <td>Rs. <%= item.base_price %></td>
+      <td>Rs. <%= item_user.bid_price %></td>
       <% if item.deadline >= Time.now + 5.hours + 30.minutes %>
         <td><%= distance_of_time_in_words_to_now(item.deadline - 5.hours - 30.minutes, true) %></td>
-        <td><%= link_to 'Edit', edit_item_path(item) %></td>
       <% else %>
         <td>Sold</td>
       <% end %>
-      <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }, remote: true, :class => 'delete_item' %></td>
+      <td><%= link_to 'Edit', edit_bid_path(item_user) %></td>
+      <td><%= link_to 'Destroy', bid_path(item_user), method: :delete, data: { confirm: 'Are you sure?' }, remote: true, :class => 'delete_item_user' %></td>
     </tr>
   <% end %>
   </table>
 <% else %>
   <br>
-  <h3>You have not posted any item yet.</h3>
+  <h3>You have not bid on any item yet.</h3>
   <br><br>
 <% end %>

@@ -3,14 +3,18 @@
     <% if user_signed_in? %>
       <li><%= link_to 'My Auctions' %> |
         <ul class="submenu">
-          <li><%= link_to 'My Bids'%></li>
+          <li><%= link_to 'My Bids', bids_path %></li>
           <li><%= link_to 'My Sells', items_path%></li>
         </ul>
       </li>
-      <li><%= link_to 'Home', dashboard_index_path %> |
       <li><%= link_to 'Sell', new_item_path %> |</li>
-      <li><%= link_to 'Edit account', edit_user_registration_path %> |</li>
-      <li><%= link_to 'Sign Out', destroy_user_session_path, :method=>'delete' %></li>
+      <li><%= link_to 'Welcome, '+current_user.name, index_path %>
+        <ul class="submenu1">
+          <li><%= link_to 'Edit account', edit_user_registration_path %></li>
+          <li><%= link_to 'Sign Out', destroy_user_session_path, :method=>'delete' %></li>
+        </ul>
+      </li>
+      
     <% else %>
       <li><%= link_to 'Sign in', new_user_session_path %> |</li>
       <li><%= link_to 'Sign up', new_user_registration_path %></li>

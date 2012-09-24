@@ -2,7 +2,7 @@ class Item < ActiveRecord::Base
 
   attr_accessible :name, :description, :image, :base_price, :deadline, :status
 
-  validates :name, :base_price, :deadline, presence: true
+  validates_presence_of :name, :base_price, :deadline
   validates :base_price, numericality: true
 
   belongs_to :user

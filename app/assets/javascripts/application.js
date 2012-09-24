@@ -21,5 +21,9 @@ $(function() {
 		$(this).closest('tr').fadeOut();
 	});
 
+	$('.delete_item_user').bind('ajax:success', function() {
+		$(this).closest('tr').fadeOut();
+	});
+
 	$("#datetimepicker").kendoDateTimePicker({ interval: 60, format: "yyyy/MM/dd hh:mm tt" });
 });

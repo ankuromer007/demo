@@ -1,0 +1,57 @@
+<% if @item_user.nil?
+     val = bids_path(@bid_form)
+     met = 'post'
+   else
+     val = update_bid_path(@bid_form)
+     met = 'put'
+   end %>
+<%= form_for @bid_form, url: val, html: { method: met } do |f| %>
+  <% if @bid_form.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bid_form.errors.count, "error") %> prohibited this bid to placed:</h2>
+
+      <ul>
+      <% @bid_form.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <b>Name:</b>
+    <%= @item.name %>
+  </p>
+
+  <p>
+    <b>Description:</b>
+    <%= @item.description %>
+  </p>
+
+  <p>
+    <b>Image:</b><br>
+    <%= image_tag @item.image.url(:small) %>
+  </p>
+
+  <p>
+    <b>Base Price:</b>
+    <%= @item.base_price %>
+  </p>
+
+  <p>
+    <b>Deadline:</b>
+    <%= distance_of_time_in_words_to_now(@item.deadline - 5.hours - 30.minutes, true) %>
+  </p>
+
+  <p>
+    <b>Bid Price:</b>
+    <%= f.text_field :bid_price, value: ( @item_user.nil? ? '' : @item_user.bid_price ), :required => true, :autofocus => true %>
+  </p>
+
+  <%= f.hidden_field :item_id, value: @item.id %>
+  <%= f.hidden_field :base_price, value: @item.base_price %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :item_user_id, value: ( @item_user.nil? ? '' : @item_user.id ) %>
+
+  <%= f.submit 'Submit' %>
+<% end %>

@@ -54,3 +54,4 @@ end
 
 gem 'paperclip', :git => 'git://github.com/patshaughnessy/paperclip.git'
 gem 'will_paginate'
+gem 'rails3-active_form'
