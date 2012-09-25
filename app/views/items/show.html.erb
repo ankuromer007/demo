@@ -21,8 +21,12 @@
   </p>
 
   <p>
-    <b>Deadline:</b>
-    <%= distance_of_time_in_words_to_now(@item.deadline - 5.hours - 30.minutes, true) %>
+    <b>Deadline: </b>
+    <% if @item.status == false %>
+      <%= distance_of_time_in_words_to_now(@item.deadline - 5.hours - 30.minutes, true) %>
+    <% else %>
+      Sold
+    <% end %>
   </p>
 </div>
 <br>

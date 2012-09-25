@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120923200723) do
+ActiveRecord::Schema.define(:version => 20120925125557) do
 
   create_table "item_users", :force => true do |t|
     t.integer  "item_id",                                   :null => false
@@ -26,21 +26,23 @@ ActiveRecord::Schema.define(:version => 20120923200723) do
   add_index "item_users", ["user_id"], :name => "item_users_user_id_fk"
 
   create_table "items", :force => true do |t|
-    t.string   "name",                                                        :null => false
+    t.string   "name",                                                                                       :null => false
     t.text     "description"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.integer  "base_price",                                                  :null => false
-    t.datetime "deadline",                                                    :null => false
-    t.boolean  "status",                                   :default => false, :null => false
-    t.integer  "user_id",                                                     :null => false
-    t.datetime "created_at",                                                  :null => false
-    t.datetime "updated_at",                                                  :null => false
+    t.integer  "base_price",                                                                                 :null => false
+    t.datetime "deadline",                                                                                   :null => false
+    t.boolean  "status",                                                                  :default => false, :null => false
+    t.integer  "user_id",                                                                                    :null => false
+    t.datetime "created_at",                                                                                 :null => false
+    t.datetime "updated_at",                                                                                 :null => false
     t.binary   "image_file",         :limit => 2147483647
     t.binary   "image_small_file",   :limit => 2147483647
     t.binary   "image_thumb_file",   :limit => 2147483647
+    t.decimal  "max_bid_price",                            :precision => 10, :scale => 2, :default => 0.0
+    t.integer  "buyer_id",                                                                :default => 0
   end
 
   add_index "items", ["deadline"], :name => "index_items_on_deadline"

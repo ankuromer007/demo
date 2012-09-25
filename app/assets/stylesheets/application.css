@@ -16,6 +16,7 @@
 
 body{
   background:  url('/images/bg-grad.png') repeat-x;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
  #wrapper{
@@ -197,7 +198,7 @@ table td {
   border-bottom: 1px solid #fff;
   border-top: 1px solid #fff;
 }
-table td a{
+table td a, p a{
   text-decoration: none;
 }
 table td:hover {
@@ -224,4 +225,11 @@ h2, h4{
 }
 #dashboard{
   background-color: #fff;
+}
+.change{
+  text-align: center;
+}
+.bidder{
+  margin-left: 280px;
+  width: 400px;
 }

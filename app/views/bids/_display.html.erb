@@ -43,6 +43,13 @@
     <%= distance_of_time_in_words_to_now(@item.deadline - 5.hours - 30.minutes, true) %>
   </p>
 
+  <% if @item.max_bid_price != 0.00 %>
+    <p>
+      <b>Max Bid Price:</b>
+      <%= @item.max_bid_price %>
+    </p>
+  <% end %>
+
   <p>
     <b>Bid Price:</b>
     <%= f.text_field :bid_price, value: ( @item_user.nil? ? '' : @item_user.bid_price ), :required => true, :autofocus => true %>
@@ -50,6 +57,7 @@
 
   <%= f.hidden_field :item_id, value: @item.id %>
   <%= f.hidden_field :base_price, value: @item.base_price %>
+  <%= f.hidden_field :max_bid_price, value: @item.max_bid_price %>
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.hidden_field :item_user_id, value: ( @item_user.nil? ? '' : @item_user.id ) %>
 

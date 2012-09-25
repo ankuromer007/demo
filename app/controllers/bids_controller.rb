@@ -3,6 +3,8 @@ class BidsController < ApplicationController
 	before_filter :authenticate_user!
 
 	def index
+    ItemStatus.update
+    
     @item_users = ItemUser.where("user_id = ?", current_user.id).page(params[:page]).order('created_at')
 
     respond_to do |format|
@@ -27,7 +29,6 @@ class BidsController < ApplicationController
 
     respond_to do |format|
       if @bid_form.valid?
-
         @item_user = ItemUser.new
 
         @item_user.item_id = @bid_form.item_id
@@ -35,16 +36,29 @@ class BidsController < ApplicationController
         @item_user.bid_price = @bid_form.bid_price
 
         if @item_user.save
+          @item.max_bid_price = @item_user.bid_price
+          @item.save
+
           format.html { redirect_to :action => 'index', notice: 'Bid was successfully placed.' }
           format.json { render json: @item_user, status: :created, location: @item_user }
         else
-          format.html { render action: "new" }
+          format.html { render action: "place_new" }
           format.json { render json: @item_user.errors, status: :unprocessable_entity }
         end
       else
         format.html { render action: 'place_new' }
-        format.json { render json: { item: @item, bid_form: @bid_form.errors }, status: :unprocessable_entity }
+        format.json { render json: { item: @item, bid_form: @bid_form.errors, item_user: @item_user.errors }, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def show
+    @item = Item.find(params[:id])
+    @item_users = ItemUser.where("item_id = ?",@item.id).order('created_at')
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: { item: @item, item_users: @item_users } }
     end
   end
 
@@ -62,14 +76,18 @@ class BidsController < ApplicationController
   def update
     @bid_form = BidForm.new(params[:bid_form])
     @item = Item.find(@bid_form.item_id)
+    @item_user = ItemUser.find(@bid_form.item_user_id)
 
     respond_to do |format|
       if @bid_form.valid?
 
-        @item_user = ItemUser.find(@bid_form.item_user_id)
         @item_user.bid_price = @bid_form.bid_price
 
         if @item_user.update_attributes(params[:item])
+
+          @item.max_bid_price = @item_user.bid_price
+          @item.save
+
           format.html { redirect_to :action => 'index', notice: 'Bid was successfully updated.' }
           format.json { head :no_content }
         else
@@ -78,7 +96,7 @@ class BidsController < ApplicationController
         end
       else
         format.html { render action: 'edit' }
-        format.json { render json: { item: @item, bid_form: @bid_form.errors }, status: :unprocessable_entity }
+        format.json { render json: { item: @item, bid_form: @bid_form.errors, item_user: @item_user.errors }, status: :unprocessable_entity }
       end
     end
   end

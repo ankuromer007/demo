@@ -8,8 +8,7 @@
     <th>Name</th>
     <th>Email</th>
     <th>Registered on</th>
-    <th>Edit</th>
-    <th>Delete</th>
+    <th class="change">Edit</th>
   </tr>
 
 <% @users.each do |user| %>
@@ -19,7 +18,7 @@
     <td><%= user.email %></td>
     <td><%= user.created_at.to_date %></td>
     <% if user.email == current_user.email %>
-      <td><%= link_to (image_tag 'edit.png'), edit_user_registration_path(user) %></td>
+      <td class="change"><%= link_to (image_tag 'edit.png'), edit_user_registration_path(user) %></td>
     <% end %>
   </tr>
 <% end %>

@@ -1,4 +1,4 @@
-<%= link_to ( image_tag 'backbutton.jpg' ), users_path, :class => 'back' %>
+<%= link_to ( image_tag 'backbutton.jpg' ), :back, :class => 'back' %>
 <div class="show">
 	<p>
 		<b>Name:</b>
@@ -8,6 +8,16 @@
 	<p>
 		<b>Email:</b>
 		<%= @user.email if @user.email %>
+	</p>
+
+	<p>
+		<b>Contact No:</b>
+		<%= @user.contact_no %>
+	</p>
+
+	<p>
+	  <b>Address:</b>
+	  <%= @user.address %>
 	</p>
 
 	<p>

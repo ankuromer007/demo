@@ -15,10 +15,6 @@
             <li><%= link_to 'Sign Out', destroy_user_session_path, :method=>'delete' %></li>
           </ul>
       </li>
-
-    <% else %>
-      <li><%= link_to 'Sign in', new_user_session_path, :class => 'btn' %></li>
-      <li><%= link_to 'Sign up', new_user_registration_path, :class => 'btn' %></li>
     <% end %>
   </ul>
 </nav>

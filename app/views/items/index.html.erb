@@ -6,28 +6,29 @@
 
   <table class="mysells">
     <tr>
-      <th></th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Base Price</th>
-      <th>Deadline</th>
-      <th>Edit</th>
-      <th>Delete</th>
+      <th class="change"></th>
+      <th class="change">Name</th>
+      <th class="change">Description</th>
+      <th class="change">Base Price</th>
+      <th class="change">Deadline</th>
+      <th class="change">Edit</th>
+      <th class="change">Delete</th>
     </tr>
 
   <% @items.each do |item| %>
     <tr>
-      <td><%= image_tag item.image.url(:thumb) %></td>
-      <td><%= link_to item.name, item %></td>
-      <td><%= item.description %></td>
-      <td>Rs. <%= item.base_price %></td>
-      <% if item.deadline >= Time.now + 5.hours + 30.minutes %>
-        <td><%= distance_of_time_in_words_to_now(item.deadline - 5.hours - 30.minutes, true) %></td>
-        <td style="text-align: center;"><%= link_to (image_tag 'edit.png'), edit_item_path(item) %></td>
+      <td class="change"><%= image_tag item.image.url(:thumb) %></td>
+      <td class="change"><%= link_to item.name, bid_path(item) %></td>
+      <td class="change"><%= item.description %></td>
+      <td class="change">Rs. <%= item.base_price %></td>
+      <% if item.status == false %>
+        <td class="change"><%= distance_of_time_in_words_to_now(item.deadline - 5.hours - 30.minutes, true) %></td>
+        <td class="change"><%= link_to (image_tag 'edit.png'), edit_item_path(item) %></td>
       <% else %>
-        <td style="text-align: center;">Sold</td>
+        <td class="change">Ended</td>
+        <td></td>
       <% end %>
-      <td style="text-align: center;"><%= link_to (image_tag 'delete.png'), item, method: :delete, data: { confirm: 'Are you sure?' }, remote: true, :class => 'delete_item' %></td>
+      <td class="change"><%= link_to (image_tag 'delete.png'), item, method: :delete, data: { confirm: 'Are you sure?' }, remote: true, :class => 'delete_item' %></td>
     </tr>
   <% end %>
   </table>
