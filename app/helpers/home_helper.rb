@@ -28,5 +28,4 @@ module HomeHelper
 
     html.html_safe
   end
-
 end
